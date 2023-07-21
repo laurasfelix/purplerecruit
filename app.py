@@ -25,10 +25,10 @@ def index():
         return render_template("login_required.html")
     else:
         if request.form['button-choice'] == "login":
-            return redirect(url_for('signup'), user_in = False)
+            return redirect(url_for('signup', user_in = False))
             #return render_template("signup.html", user_in = False)
         else:
-            return redirect(url_for('login'), clubs=clubs, user_in = False, validNU=True)
+            return redirect(url_for('login', clubs=clubs, user_in = False, validNU=True))
 
 @app.route('/login', methods=['GET', 'POST'] )
 def login():
