@@ -17,8 +17,7 @@ user = db.user
 
 #redirect(url_for('signup', var=var))
 # -- Initialization section --
-@app.route('/')
-@app.route('/login_required', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
         return render_template("login_required.html")
