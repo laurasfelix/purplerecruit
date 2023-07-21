@@ -15,7 +15,7 @@ db = client.database
 
 user = db.user
 
-clubs = scrape.open_site()
+clubs = scrape.open()
 
 #redirect(url_for('signup', var=var))
 # -- Initialization section --
