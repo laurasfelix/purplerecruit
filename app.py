@@ -5,8 +5,6 @@ from flask import redirect
 from flask import url_for
 from flask import session
 from pymongo import MongoClient
-import json
-from urllib.request import urlopen
 import scrape
 app = Flask(__name__)
 username = "laurafelix2026"
