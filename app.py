@@ -11,7 +11,7 @@ import scrape
 app = Flask(__name__)
 username = "laurafelix2026"
 password = "Papo662607004"
-url = f"mongodb+srv://{username}:{password}@userinfo.nqpknhe.mongodb.net/database?retryWrites=false/"
+url = f"mongodb+srv://{username}:{password}@userinfo.nqpknhe.mongodb.net/database?retryWrites=false"
 app.config["MONGO_URI"] = url
 client = PyMongo(app)
 
