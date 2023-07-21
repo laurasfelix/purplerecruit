@@ -40,7 +40,6 @@ def login():
         dict_user = {"name": request.form['firstname'], "lastname": request.form['lastname'], "birthday": request.form['birthday'], 
                     "email": request.form['email'], "major": request.form['primajor'], "club":request.form['clubby'], "password": request.form['password'], "username": request.form["firstname"]+request.form["lastname"]+request.form["birthday"][0:2]}
         
-        print(dict_user)
         bool_check = False
         for i in all_users:
             if dict_user["email"].lower() == i["email"].lower():
