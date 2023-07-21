@@ -15,6 +15,8 @@ db = client.database
 
 user = db.user
 
+clubs = scrape.open_site()
+
 #redirect(url_for('signup', var=var))
 # -- Initialization section --
 @app.route('/', methods=['GET', 'POST'])
@@ -26,19 +28,18 @@ def index():
             return redirect(url_for('signup', user_in = False))
             #return render_template("signup.html", user_in = False)
         else:
-            return redirect(url_for('login', clubs=scrape.open_site(), user_in = False, validNU=True))
+            return redirect(url_for('login', clubs=clubs, user_in = False, validNU=True))
 
 @app.route('/login', methods=['GET', 'POST'] )
 def login():
     #this is signup
-    all_users = list(user.find({}))
     
     if request.method == 'POST':
+        all_users = list(user.find({}))
         
         dict_user = {"name": request.form['firstname'], "lastname": request.form['lastname'], "birthday": request.form['birthday'], 
                     "email": request.form['email'], "major": request.form['primajor'], "club":request.form['clubby'], "password": request.form['password'], "username": request.form["firstname"]+request.form["lastname"]+request.form["birthday"][0:2]}
         
-        print(dict_user)
         bool_check = False
         for i in all_users:
             if dict_user["email"].lower() == i["email"].lower():
@@ -46,17 +47,17 @@ def login():
 
         if bool_check:
             # return redirect(url_for('login', clubs=scrape.open_site(), user_in = True, validNU=True))
-            return render_template("login.html", clubs=scrape.open_site(), user_in = True, validNU=True)
+            return render_template("login.html", clubs=clubs, user_in = True, validNU=True)
 
         if "u.northwestern.edu" not in dict_user["email"].lower():
-            return render_template("login.html", clubs=scrape.open_site(), user_in = False, validNU=False)
+            return render_template("login.html", clubs=clubs, user_in = False, validNU=False)
         
         user.insert_one(dict_user)
 
         return redirect(url_for('homepage', name=dict_user["username"]))
         # return render_template("homepage.html")
     else:
-        return render_template("login.html", clubs=scrape.open_site(), user_in = False, validNU=True)
+        return render_template("login.html", clubs=clubs, user_in = False, validNU=True)
 
 @app.route('/signup', methods=['GET', 'POST'] )
 def signup():
