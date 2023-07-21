@@ -9,7 +9,7 @@ import scrape
 app = Flask(__name__)
 username = "laurafelix2026"
 password = "Papo662607004"
-url = f"mongodb+srv://{username}:{password}@userinfo.nqpknhe.mongodb.net/?retryWrites=true&w=majority"
+url = f"mongodb+srv://{username}:{password}@database.nqpknhe.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(url)
 db = client.database 
 
@@ -72,7 +72,7 @@ def signup():
                         return render_template("signup.html", email_bool = True, password_bool=False)
 
             return render_template("signup.html",  email_bool = False, password_bool=True) 
-        return "Return to homepage! Error."
+        return render_template("signup.html",  email_bool = False, password_bool=True) 
     else:
         return render_template("signup.html", email_bool=True, password_bool=True)
 
