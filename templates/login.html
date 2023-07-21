@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+      </style>
+</head>
+<style>
+    body
+    {font-family: 'VT323', monospace;
+background-color: #d0f1ad;
+text-align: center;
+margin:auto;
+font-size: 30px;}
+a {
+    position: fixed;
+    top:70%;
+    right: 4%;
+}
+
+a img:last-child {
+  display: none;  
+}
+a:hover img:last-child {
+  display: block;  
+}
+a:hover img:first-child {
+  display: none;  
+}
+
+</style>
+<body>
+    signup bitches
+    <a>
+        <img src="../static/img/pixilart-frames/pixil-frame-0.png" width="200" height="auto"/>
+        <img src="../static/img/pixilart-frames/pixil-frame-1.png" width="200" height="auto"/>
+    </a>
+
+    {% if user_in %}
+    <p style="color: red;">
+        User already in! Try logging in instead.
+    </p>
+    {% elif not validNU %}
+    <p style="color: purple">
+        That's not a valid Northwestern email. Try again!
+    </p>
+    {% endif %}
+
+    <form method="post" action="/login">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="firstname1" class="form-label">First name</label>
+        <input name='firstname' type="text" id="firstname1" class="form-control form-control-lg" aria-labelledby="firstnamehelp" placeholder="Tadeu" required>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="lastname1" class="form-label">Last name</label>
+        <input name='lastname' type="text" id="lastname1" class="form-control form-control-lg" aria-labelledby="lastnameblock" placeholder="de Costa" required>
+                </div>
+                <div class="col-3">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="birthday1" class="form-label">Birthday</label>
+        <input name='birthday' type="text" id="birthday1" class="form-control form-control-lg" aria-labelledby="birthdayhelp" placeholder="DD/MM/YYYY" required>
+                </div>
+                <div class="col-3">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="numail1" class="form-label">Northwestern Email</label>
+        <input name='email' type="email" id="numail1" class="form-control form-control-lg" aria-labelledby="numailhelp" placeholder="tadeudecosta2027@u.northwestern.edu" required>
+        <div id="numailhelp" class="form-text">
+            This must be your email used for Northwestern matters (i.e., @u.northwestern.edu).
+        </div>
+                </div>
+                <div class="col-3">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="primmajor1" class="form-label">Major</label>
+        <input name='primajor' type="text" id="primajor1" class="form-control form-control-lg" aria-labelledby="primajorhelp" placeholder="Computer Science" required>
+        <div id="primajorhelp" class="form-text">
+            Only include up to one major. 
+        </div>
+                </div>
+                <div class="col-3">
+                    
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="cluhbby1" class="form-label">Pick a club you're a part of</label>
+        <input name='clubby' type="text" id="cluhbby1" class="form-control form-control-lg" list="datalistOptions" aria-labelledby="clubbyhelp" placeholder="Fusion" required>
+        <div id="clubbyhelp" class="form-text">
+            Only include up to one club.
+        </div>
+
+        <datalist id="datalistOptions">
+            {% for i in clubs %}
+            <option  value="{{ i }}">{{ i }}</option>
+            {%endfor%}
+          </datalist>
+
+                </div>
+                <div class="col-3">
+                    
+                </div>
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="inputPassword5" class="form-label">Password</label>
+                    <div class="input-group mb-3">
+                        <input name='password' type="password" id="inputPassword5" class="form-control form-control-lg" aria-labelledby="passwordHelpBlock" required>
+                        
+                    </div>
+                    <div id="passwordHelpBlock" class="form-text">
+                        Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                    </div>
+                    
+                </div>
+                <div class="col-3">
+                    
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                        <label for="inputPassword2" class="form-label">Confirm password</label>
+                        <input type="password" id="inputPassword2" class="form-control form-control-lg" aria-labelledby="passwordHelpBlock1" required>
+                    <div id="passwordHelpBlock1" class="form-text">
+                        Must be equal to the previous password.
+                    </div>
+                </div>
+                <div class="col-3">
+                    
+                </div>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-dark btn-lg">Ready!</button>
+        
+    </form>
+</body>
+</html>

@@ -51,14 +51,49 @@ a:hover img:first-child {
   display: none;  
 }
 
+#login
+{
+    position: relative;
+    left: 120%;
+    top: -180%;
+}
+
 </style>
-<body id="background">
-    <audio id="player" autoplay loop>
+<body onmouseover="playAudio()" id="background">
+    <audio id="player" autoplay loop controls style="display: none;">
         <source src="../static/img/pokemonbattle.mp3onlineaudioconvert.com.ogg" type="audio/ogg">
     </audio>
+
+    <script>
+        var audio = document.getElementById('player');
+        audio.style.display = 'none'; // Hide the built-in audio controls
+
+        function playAudio() {
+            audio.play().then(() => {
+                // Playback started successfully
+                // Do any other tasks related to audio playback
+            }).catch(error => {
+                // Autoplay was prevented by the browser autoplay policy
+                // Show a message or ask the user to interact with the page
+                console.log('Autoplay prevented:', error);
+            });
+        }
+
+        // Loop the audio
+        audio.addEventListener('ended', function() {
+            audio.currentTime = 0;
+            audio.play();
+        });
+    </script>
     
     
     <h1 style="font-size: 100px;">Welcome!</h1>
+    <form method="post" action="/login_required">
+        <input class="text" name="button-choice" class="form-control" value="login" hidden>
+        <div class="d-grid gap-2 col-3 mx-auto">
+            <button id="login" class="btn btn-light btn-lg" type="submit" style="font-size: 20px;">Log in</button>
+        </div>
+    </form>
     <h1> This is a website focused on making sure the right people have the right opportunities, and for now, our focus is on Northwestern's Brazilian community. If that's not you, that's okay! But you won't be able to access purplerecruit just yet. </h1>
     <div class="container-fluid extra-order">
         <div class="row">
@@ -71,10 +106,15 @@ a:hover img:first-child {
                 </a>
             </div>
             <div class="col-sm-8">
-                <div class="d-grid gap-2 col-8 mx-auto">
-                    <button class="btn btn-light btn-lg signup" type="button">Button</button>
-                  </div>
-            </div>
+            <form method="post" action="/login_required">
+                <input class="text" name="button-choice" class="form-control" value="signup" hidden>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <button class="btn btn-light btn-lg signup" type="submit" style="font-size: 20px;">Sign up!</button>
+                    </div>
+                
+            </form>
+        </div>
+            
             <div class="col-sm-1">
             </div>
         </div>
