@@ -59,8 +59,8 @@ a:hover img:first-child {
 }
 
 </style>
-<body onmouseover="playAudio()" id="background">
-    <audio id="player" autoplay loop controls style="display: none;">
+<body id="background">
+    <!-- <audio id="player" autoplay loop controls style="display: none;">
         <source src="../static/img/pokemonbattle.mp3onlineaudioconvert.com.ogg" type="audio/ogg">
     </audio>
 
@@ -84,11 +84,11 @@ a:hover img:first-child {
             audio.currentTime = 0;
             audio.play();
         });
-    </script>
+    </script> -->
     
     
     <h1 style="font-size: 100px;">Welcome!</h1>
-    <form method="post" action="/login_required">
+    <form method="post" action="/">
         <input class="text" name="button-choice" class="form-control" value="login" hidden>
         <div class="d-grid gap-2 col-3 mx-auto">
             <button id="login" class="btn btn-light btn-lg" type="submit" style="font-size: 20px;">Log in</button>
@@ -106,7 +106,7 @@ a:hover img:first-child {
                 </a>
             </div>
             <div class="col-sm-8">
-            <form method="post" action="/login_required">
+            <form method="post" action="/">
                 <input class="text" name="button-choice" class="form-control" value="signup" hidden>
                     <div class="d-grid gap-2 col-8 mx-auto">
                         <button class="btn btn-light btn-lg signup" type="submit" style="font-size: 20px;">Sign up!</button>
