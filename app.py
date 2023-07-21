@@ -63,14 +63,16 @@ def login():
 def signup():
     if request.method == 'POST':
         all_users = list(user.find({}))
-        for i in all_users:
-            if request.form["email"].lower() == i["email"].lower():
-                if request.form["password"].lower() == i["password"].lower():
-                    return redirect(url_for('homepage',name=i["username"]))
-                else:
-                    return render_template("signup.html", email_bool = True, password_bool=False)
+        if all_users:
+            for i in all_users:
+                if request.form["email"].lower() == i["email"].lower():
+                    if request.form["password"].lower() == i["password"].lower():
+                        return redirect(url_for('homepage',name=i["username"]))
+                    else:
+                        return render_template("signup.html", email_bool = True, password_bool=False)
 
-        return render_template("signup.html",  email_bool = False, password_bool=True) 
+            return render_template("signup.html",  email_bool = False, password_bool=True) 
+        return "Return to homepage! Error."
     else:
         return render_template("signup.html", email_bool=True, password_bool=True)
 
