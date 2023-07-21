@@ -6,23 +6,18 @@ from flask import url_for
 from flask import session
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from flask_pymongo import PyMongo
 import scrape
 app = Flask(__name__)
 username = "laurafelix2026"
 password = "Papo662607004"
-url = f"mongodb+srv://{username}:{password}@database.nqpknhe.mongodb.net/?retryWrites=true&w=majority"
-client = MongoClient(url, server_api=ServerApi('1'))
+url = f"mongodb+srv://{username}:{password}@userinfo.nqpknhe.mongodb.net/database?retryWrites=true&w=majority/"
+app.config["MONGO_URI"] = url
+client = PyMongo(app)
 
-db = client.database 
+db = client.db 
 
 user = db.user
-
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
 
 clubs = scrape.open()
 
@@ -44,6 +39,7 @@ def login():
     #this is signup
     
     if request.method == 'POST':
+        
         all_users = list(user.find({}))
         
         dict_user = {"name": request.form['firstname'], "lastname": request.form['lastname'], "birthday": request.form['birthday'], 
@@ -70,17 +66,15 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'] )
 def signup():
-    if request.method == 'POST':
+    if request.method == 'POST':  
         all_users = list(user.find({}))
-        if all_users:
-            for i in all_users:
-                if request.form["email"].lower() == i["email"].lower():
-                    if request.form["password"].lower() == i["password"].lower():
-                        return redirect(url_for('homepage',name=i["username"]))
-                    else:
-                        return render_template("signup.html", email_bool = True, password_bool=False)
+        for i in all_users:
+            if request.form["email"].lower() == i["email"].lower():
+                if request.form["password"].lower() == i["password"].lower():
+                    return redirect(url_for('homepage',name=i["username"]))
+                else:
+                    return render_template("signup.html", email_bool = True, password_bool=False)
 
-            return render_template("signup.html",  email_bool = False, password_bool=True) 
         return render_template("signup.html",  email_bool = False, password_bool=True) 
     else:
         return render_template("signup.html", email_bool=True, password_bool=True)
