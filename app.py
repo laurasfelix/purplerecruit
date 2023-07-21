@@ -29,13 +29,16 @@ def index():
         return render_template("login_required.html")
     else:
         if request.form['button-choice'] == "login":
-            return redirect(url_for('signup', user_in = False))
+            return redirect(url_for('login', user_in = False))
             #return render_template("signup.html", user_in = False)
         else:
-            return redirect(url_for('login', clubs=clubs, user_in = False, validNU=True))
+            try:
+                return redirect(url_for('signup', clubs=clubs, user_in = False, validNU=True))
+            except:
+                return Exception
 
-@app.route('/login', methods=['GET', 'POST'] )
-def login():
+@app.route('/signup', methods=['GET', 'POST'] )
+def signup():
     #this is signup
     
     if request.method == 'POST':
@@ -64,8 +67,8 @@ def login():
     else:
         return render_template("login.html", clubs=clubs, user_in = False, validNU=True)
 
-@app.route('/signup', methods=['GET', 'POST'] )
-def signup():
+@app.route('/login', methods=['GET', 'POST'] )
+def login():
     if request.method == 'POST':  
         all_users = list(user.find({}))
         for i in all_users:
