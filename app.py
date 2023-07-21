@@ -4,16 +4,25 @@ from flask import request
 from flask import redirect
 from flask import url_for
 from flask import session
-from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 import scrape
 app = Flask(__name__)
 username = "laurafelix2026"
 password = "Papo662607004"
 url = f"mongodb+srv://{username}:{password}@database.nqpknhe.mongodb.net/?retryWrites=true&w=majority"
-client = MongoClient(url)
+client = MongoClient(url, server_api=ServerApi('1'))
+
 db = client.database 
 
 user = db.user
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
 
 clubs = scrape.open()
 
