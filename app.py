@@ -11,7 +11,7 @@ import scrape
 app = Flask(__name__)
 username = "laurafelix2026"
 password = "Papo662607004"
-url = f"mongodb+srv://{username}:{password}@userinfo.nqpknhe.mongodb.net/database?retryWrites=false"
+url = f"mongodb+srv://{username}:{password}@userinfo.nqpknhe.mongodb.net/database/"
 app.config["MONGO_URI"] = url
 client = PyMongo(app)
 
@@ -30,17 +30,13 @@ def index():
     else:
         if request.form['button-choice'] == "login":
             return redirect(url_for('login', user_in = False))
-            #return render_template("signup.html", user_in = False)
         else:
-            try:
-                return redirect(url_for('signup', clubs=clubs, user_in = False, validNU=True))
-            except:
-                return Exception
+            return redirect(url_for('signup', clubs=clubs, user_in = False, validNU=True))
+
 
 @app.route('/signup', methods=['GET', 'POST'] )
 def signup():
-    #this is signup
-    
+    #this is signup 
     if request.method == 'POST':
         
         all_users = list(user.find({}))
@@ -63,7 +59,6 @@ def signup():
         user.insert_one(dict_user)
 
         return redirect(url_for('homepage', name=dict_user["username"]))
-        # return render_template("homepage.html")
     else:
         return render_template("login.html", clubs=clubs, user_in = False, validNU=True)
 
