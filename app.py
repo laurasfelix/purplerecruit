@@ -31,7 +31,7 @@ def index():
         if request.form['button-choice'] == "login":
             return redirect(url_for('login', user_in = False))
         else:
-            return redirect(url_for('signup', clubs=clubs, user_in = False, validNU=True))
+            return redirect(url_for('signup'))
 
 
 @app.route('/signup', methods=['GET', 'POST'] )
@@ -91,5 +91,5 @@ def homepage(name):
 
 
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
