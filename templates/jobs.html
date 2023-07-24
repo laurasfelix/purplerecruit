@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+      </style>
+</head>
+<style>
+    body
+    {font-family: 'VT323', monospace;
+background-color: #cdcccf;
+text-align: center;
+margin:auto;
+font-size:24px;}
+p{
+    font-size: 56px !important;
+    text-align: left !important;
+}
+h1{
+    background-color: #1987C9;
+}
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="color:black">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">purplerecruit</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href={{ url }}>Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Wilson</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href={{ url_jobs }}>Jobs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Companies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        {% for job_index in range(0, jobs|length-4, 4) %}
+        <div class="row">
+            {% if jobs[job_index] %}
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+            </div>
+            {% endif %}
+
+            {% if jobs[job_index+1] %}
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+            </div>
+            {% endif %}
+
+            {% if jobs[job_index+2] %}
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+            </div>
+            {% endif %}
+
+            {% if jobs[job_index+3] %}
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <br>
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-3">
+
+          </div>
+          <div class="col-6">
+            <form method="post" action="./insert_jobs">
+                  <div class="d-grid gap-2 col-8 mx-auto">
+                      <button class="btn btn-light btn-lg signup" type="submit" style="font-size: 20px;">Insert a job :-p</button>
+                  </div>
+          </form>
+          </div>
+          <div class="col-3">
+            
+          </div>
+        </div>
+
+      </div>
+      
+      
+      
+
+</body>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+      </style>
+</head>
+<style>
+    body
+    {font-family: 'VT323', monospace;
+background-color: #cdcccf;
+text-align: center;
+margin:auto;
+font-size:24px;}
+p{
+    font-size: 56px !important;
+    text-align: left !important;
+}
+h1{
+    background-color: #1987C9;
+}
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="color:black">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">purplerecruit</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href={{ url }}>Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Wilson</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href={{ url_jobs }}>Jobs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Companies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+      
+      <br>
+
+      <form method="post" action={{ url_insert }}>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="position1" class="form-label">Position</label>
+        <input name='position' type="text" id="position1" class="form-control form-control-lg" aria-labelledby="positionhelp" placeholder="Investment Banking Internship" required>
+        <div id="positionhelp" class="form-text">
+            Name of position!
+        </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="company1" class="form-label">Position</label>
+        <input name='company' type="text" id="company1" class="form-control form-control-lg" aria-labelledby="companyhelp" placeholder="Goldman Sachs" required>
+        <div id="companyhelp" class="form-text">
+            Name of company!
+        </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="timeline1" class="form-label">Timeline</label>
+                    <input name='timeline' class="form-control form-control-lg" list="timelines" id="timeline1"  placeholder="Summer" aria-labelledby="timelinehelp" default="Summer" required>
+                    <datalist id="timelines">
+                    <option value="Summer">
+                    <option value="Fall">
+                    <option value="Winter">
+                    <option value="Spring">
+                    <option value="Summer/Fall">
+                    <option value="Fall/Winter">
+                    <option value="Any">
+                    </datalist>
+                    <div id="timelinehelp" class="form-text">
+                        Which season the position is happening in :)
+                    </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="description1" class="form-label">Description</label>
+        <textarea name='description' type="textarea" id="description1" class="form-control form-control-lg" aria-labelledby="descriptionhelp" placeholder="Looking for the C-level's kid specifically XD" style="height: 156px !important" required></textarea>
+        <div id="descriptionhelp" class="form-text">
+            What the company asks for in this position. Be as detailed as you possibly can.
+        </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="link1" class="form-label">Link to position</label>
+        <input name='link' type="text" id="link1" class="form-control form-control-lg" aria-labelledby="linkhelp" placeholder="tinyurl/GSinternship" required>
+        <div id="linkhelp" class="form-text">
+            Link to apply to said position
+        </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="year1" class="form-label">Year</label>
+                    <input name='year' class="form-control form-control-lg" list="years" id="year1"  placeholder="Any" aria-labelledby="yearhelp" default="Any" required>
+                    <datalist id="years">
+                    <option value="Freshmen">
+                    <option value="Sophomores">
+                    <option value="Juniors">
+                    <option value="Seniors">
+                    <option value="Underclassmen">
+                    <option value="Upperclassmen">
+                    <option value="Sophomores/Juniors">
+                    <option value="Any">
+                    </datalist>
+                    <div id="yearhelp" class="form-text">
+            Who are they looking for? Juniors, or freshmen?
+        </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-6">
+                    <label for="genre1" class="form-label">Genre of position</label>
+                    <input name='genre' class="form-control form-control-lg" list="genres" id="genre1"  placeholder="Type to search..." aria-labelledby="genrehelp" required>
+                    <datalist id="genres">
+                    <option value="Finance">
+                    <option value="Biotech">
+                    <option value="Software Engineering">
+                    <option value="Research">
+                    <option value="Teaching">
+                    <option value="Music">
+                    <option value="Math">
+                    </datalist>
+        
+                <div id="genrehelp" class="form-text">
+                    Choose most suited genre for position among these options. If you have a suggestion for other options, 
+                    shoot me an email~ and I'll make it happen. You know who I am!
+                </div>
+
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn btn-dark btn-lg">Ready!</button>
+
+      </form>
+
+</body>

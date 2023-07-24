@@ -11,13 +11,15 @@ import scrape
 app = Flask(__name__)
 username = "laurafelix2026"
 password = "Papo662607004"
-url = f"mongodb+srv://{username}:{password}@userinfo.nqpknhe.mongodb.net/database/"
+url = f"mongodb+srv://{username}:{password}@userinfo.nqpknhe.mongodb.net/database"
 app.config["MONGO_URI"] = url
 client = PyMongo(app)
 
 db = client.db 
 
 user = db.user
+
+jobs_ = db.jobs
 
 clubs = scrape.open()
 
@@ -80,16 +82,48 @@ def login():
 @app.route('/homepage/<name>', methods=['GET', 'POST'])
 def homepage(name):
     if request.method == 'POST':
-        return render_template("homepage.html")
+        return render_template("homepage.html", url=url_for("homepage", name=name), url_jobs=url_for("jobs", name=name))
     else:
-        username = user.find_one({'username': name})
+        username = user.find_one({"username": name})
         if username:
-            return render_template("homepage.html", user=username)
+            return render_template("homepage.html", user=username, url=url_for("homepage", name=name), url_jobs=url_for("jobs", name=name))
         
         return "USER NOT FOUND! DUMBASS."
 
+@app.route('/jobs/<name>', methods=['GET', 'POST'])
+def jobs(name):
+    all_jobs = list(jobs_.find({}))
+    if request.method == 'GET':
+        return render_template("jobs.html", jobs=all_jobs, name=name, url=url_for("homepage", name=name), url_jobs=url_for("jobs", name=name))
+    else:
+        return redirect(url_for("insert_jobs", name=name))
+
+@app.route("/jobs/<name>/insert", methods=['GET', 'POST'])
+def insert_jobs(name):
+    username = user.find_one({"username": name})
+    if username:
+        if request.method == 'POST':
+            job_dictionary = {
+                    "Position": request.form["position"], 
+                    "Company": request.form["company"], 
+                    "Timeline": request.form["timeline"],
+                    "Description": request.form["description"], 
+                    "Link": request.form["link"],
+                    "Added by": username['name']+" "+username['lastname'], 
+                    "Genre": request.form["genre"],
+                    "Year": request.form["year"]
+                }
+
+            jobs_.insert_one(job_dictionary)
+                
+            return redirect(url_for("jobs", name=name))
+        else:
+            return render_template("insert_jobs.html", user=username, url=url_for("homepage", name=name), url_jobs=url_for("jobs", name=name), url_insert=url_for("insert_jobs", name=name))
+    return "USER NOT FOUND!"        
 
 
 
-# if __name__ == '__main__':
-#     app.run()
+
+
+if __name__ == '__main__':
+    app.run()
